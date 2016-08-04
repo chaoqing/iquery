@@ -65,7 +65,13 @@ class TrainsCollection(object):
         for row in self._rows:
             train_no = row.get('station_train_code')
             initial = train_no[0].lower()
-            if not self._opts or initial in self._opts:
+
+            just_have_tickets = not self._opts or \
+                not 'a' in self._opts or \
+                any([ c.isdigit() for c in "".join([row.get(t+"_num") \
+                  for t in ['swz','zy','ze','rw','yw','rz','yz','wz']])])
+
+            if not self._opts or (set(self._opts)=={'a'} or initial in self._opts) and just_have_tickets:
                 train = [
                     # Column: '车次'
                     train_no,
@@ -186,9 +192,9 @@ class TrainTicketsQuery(object):
         except ValueError:
             exit_after_echo(INVALID_DATE)
 
-        # A valid query date should within 50 days.
+        # A valid query date should within 90 days.
         offset = date - datetime.today()
-        if offset.days not in range(-1, 50):
+        if offset.days not in range(-1, 90):
             exit_after_echo(INVALID_DATE)
 
         return datetime.strftime(date, '%Y-%m-%d')

@@ -157,7 +157,7 @@ Help
         iquery -l song [singer]
         iquery -p <city> <hospital>
         iquery <city> <show> [<days>]
-        iquery [-dgktz] <from> <to> <date>
+        iquery [-dgktza] <from> <to> <date>
 
     Arguments:
         from             出发站
@@ -174,7 +174,7 @@ Help
 
     Options:
         -h, --help       显示该帮助菜单.
-        -dgktz           动车,高铁,快速,特快,直达
+        -dgktza           动车,高铁,快速,特快,直达,仅查询有票
         -m               热映电影查询
         -p               莆田系医院查询
         -l               歌词查询

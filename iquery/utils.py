@@ -81,7 +81,7 @@ class Args(object):
         arg = self.get(0)
         if arg.startswith('-') and not self.is_asking_for_help:
             return arg[1:]
-        return ''.join(x for x in arg if x in 'dgktz')
+        return ''.join(x for x in arg if x in 'dgktza')
 
     def contain_show_type(self):
         arg = self.get(2)
@@ -116,7 +116,7 @@ class Args(object):
             arg = self.get(0)
             if not arg.startswith('-'):
                 return False
-            if arg[1] not in 'dgktz':
+            if arg[1] not in 'dgktza':
                 return False
         return True
 
